@@ -56,3 +56,12 @@ setInterval(async function () {
   const context = await parseContext();
   window.postMessage({ type: "FROM_PAGE", context });
 }, 100);
+
+
+// Redirect
+window.addEventListener("message", (event) => {
+  if (event.data?.type !== "REDIRECT") return;
+
+  const { url } = event.data;
+  window.location.href = url;
+});

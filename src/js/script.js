@@ -10,7 +10,13 @@ setTimeout(function(){
 }, 0);
 
 window.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'FROM_PAGE') {
+  if (event.data?.type === 'FROM_PAGE') {
     chrome.runtime.sendMessage({ essential: event.data });
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message?.type === 'REDIRECT') {
+    window.postMessage({ type: "REDIRECT", url: message.url });
   }
 });

@@ -42,7 +42,13 @@ function setup() {
 
   const popupButton = document.getElementById("popupButton");
   popupButton.style.display = "";
-  popupButton.addEventListener("click", () => {});
+  popupButton.addEventListener("click", () => {
+    const href = getSiteHref(!isRunningLocally);
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+      var activeTab = tabs[0];
+      chrome.tabs.sendMessage(activeTab.id, { type: "REDIRECT", url: href });
+    });
+  });
 
   document.getElementById("popupButtonText").innerHTML = isRunningLocally
     ? "Switch to live"
