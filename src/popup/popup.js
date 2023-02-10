@@ -5,11 +5,13 @@ function setup() {
   runningStatusText.innerText = isRunningLocally
     ? "Running locally"
     : "Not running locally";
+  runningStatusText.style.display = '';
 
   const runningStatusIcon = document.getElementById("runningStatusIcon");
   runningStatusIcon.classList.add(
     isRunningLocally ? "status--green" : "status--red"
   );
+  runningStatusIcon.style.display = '';
 
   function getPath() {
     let path = "";
@@ -38,8 +40,8 @@ function setup() {
     return url + path;
   };
 
-  document.getElementById("popupButton").addEventListener("click", () => {
-    alert(getSiteHref(!isRunningLocally));
-    alert(JSON.stringify(window.scriptStatuses));
+  const popupButton = document.getElementById("popupButton");
+  popupButton.style.display = '';
+  popupButton.addEventListener("click", () => {
   });
 }
