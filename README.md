@@ -7,3 +7,9 @@ Chrome extension to help you develop on SuiteCommerce Advanced sites.
 The Extension provides a popup with a button to switch between the live and the local site.
 
 It also shows a list of scripts loaded from localhost, and whether or not they loaded successfully.
+
+# How to install
+
+Read [this article](https://dev.to/ben/how-to-install-chrome-extensions-manually-from-github-1612)
+
+> remember to select the `src` folder when installing the extension.
