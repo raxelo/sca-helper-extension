@@ -1,0 +1,51 @@
+{
+    "name": "SuiteCommerce Extension Helper Devtool",
+    "version": "1.0.0",
+    "description": "Toggles between local and remote development mode on a SC site.",
+    "author": [{
+        "name": "Lucas Goyeche",
+        "email": "lucas@raxel.co"
+    }],
+
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": false
+    },
+
+    "permissions": [
+        "webNavigation",
+        "webRequestBlocking",
+        "storage",
+        "activeTab"
+    ],
+
+    "optional_permissions": [
+        "*://*/*"
+    ],
+
+    "web_accessible_resources": [
+      "js/inject.js"
+    ],
+
+    "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "js": ["js/script.js"]
+      }
+    ],
+
+    "icons": {
+        "16": "media/icon.png",
+        "48": "media/icon.png",
+        "128": "media/icon.png"
+    },
+
+    "browser_action": {
+        "default_title": "Ads Link Skiper",
+        "default_icon": "media/icon.png",
+        "default_popup": "popup/popup.html"
+    },
+
+    "manifest_version": 2
+
+}

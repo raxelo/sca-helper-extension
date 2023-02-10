@@ -1,0 +1,69 @@
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid #007bff;
+}
+
+.popup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 200px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--status-color, #ff0000);
+  box-shadow: 0 0 0 0 var(--status-shadow, rgba(255, 0, 0, 0.5));
+  animation: pulse 1s infinite;
+}
+
+.status-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 16px; 
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--status-shadow, rgba(255, 0, 0, 0.5));
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+  }
+}
+
+.status--red {
+  --status-color: #ff0000;
+  --status-shadow: rgba(255, 0, 0, 0.5);
+}
+
+.status--green {
+  --status-color: #00ff00;
+  --status-shadow: rgba(0, 255, 0, 0.5);
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
