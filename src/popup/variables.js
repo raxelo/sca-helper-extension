@@ -15,15 +15,15 @@ window.addEventListener("DOMContentLoaded", () => {
     window.scriptStatuses = context.scriptStatuses;
   });
 
+  updateVariables();
   setInterval(updateVariables, 100);
 
-  const attempt = () => {
+  const setUpComponents = () => {
     if (!window.ENVIRONMENT) {
-      setTimeout(attempt, 100);
+      setTimeout(setUpComponents, 10);
       return;
     }
     setup();
   }
-
-  attempt();
+  setUpComponents();
 });
