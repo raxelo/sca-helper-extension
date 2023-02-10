@@ -1,8 +1,8 @@
 # SCA Helper Extension
 
-> A Chrome extension to help you develop on SuiteCommerce Advanced sites.
+Chrome extension to help you develop on SuiteCommerce Advanced sites.
 
-<img width="217" alt="image" src="https://user-images.githubusercontent.com/29938718/218124498-a1688319-bb77-4feb-85f3-7adf29af1bd9.png">
+<img width="100%" alt="Extension demo" src="https://user-images.githubusercontent.com/29938718/218135496-c36dc02e-7a67-45c8-af25-3172275caac2.gif">
 
 The Extension provides a popup with a button to switch between the live and the local site.
 
