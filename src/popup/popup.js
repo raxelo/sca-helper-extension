@@ -5,13 +5,13 @@ function setup() {
   runningStatusText.innerText = isRunningLocally
     ? "Running locally"
     : "Not running locally";
-  runningStatusText.style.display = '';
+  runningStatusText.style.display = "";
 
   const runningStatusIcon = document.getElementById("runningStatusIcon");
   runningStatusIcon.classList.add(
     isRunningLocally ? "status--green" : "status--red"
   );
-  runningStatusIcon.style.display = '';
+  runningStatusIcon.style.display = "";
 
   function getPath() {
     let path = "";
@@ -41,7 +41,32 @@ function setup() {
   };
 
   const popupButton = document.getElementById("popupButton");
-  popupButton.style.display = '';
-  popupButton.addEventListener("click", () => {
+  popupButton.style.display = "";
+  popupButton.addEventListener("click", () => {});
+
+  document.getElementById("popupButtonText").innerHTML = isRunningLocally
+    ? "Switch to live"
+    : "Switch to local";
+
+  // loaded script list
+  const loadedScriptsUl = document.getElementById("loaded-scripts");
+  window.scriptStatuses.forEach((script) => {
+    const li = document.createElement("li");
+
+    const status = document.createElement("span");
+    status.classList.add("status");
+    const statusClasses = {
+      loaded: "green",
+      failed: "red",
+      loading: "yellow",
+    };
+    status.classList.add(`status--${statusClasses[script.status]}`);
+    li.appendChild(status);
+
+    const text = document.createElement("span");
+    text.innerText = script.name;
+    li.appendChild(text);
+
+    loadedScriptsUl.appendChild(li);
   });
 }

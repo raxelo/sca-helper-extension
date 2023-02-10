@@ -6,12 +6,15 @@
 <body>
   <div class="popup">
     <button id="popupButton" style="display: none">
-      Switch to local <span id="currentTouchpointName"></span>
+      <span id="popupButtonText">Switch to local</span> <span id="currentTouchpointName"></span>
     </button>
     <span class="status-container">
       <span id="runningStatusText">SCA not detected</span> 
       <i class="status" id="runningStatusIcon"></i>
     </span>
+
+    <ul id="loaded-scripts">
+    </ul>
   </div>
   
   <script src="variables.js"></script>
