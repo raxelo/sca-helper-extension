@@ -24,7 +24,6 @@ async function doRequest(src) {
     .then((res) => res.ok);
 }
 
-
 async function getScriptStatuses() {
   // Get scripts
   const scripts = Array.from(
@@ -34,8 +33,8 @@ async function getScriptStatuses() {
   // Map to statuses
   const statuses = scripts.map(async (script) => {
     return {
-      scriptName: getScriptNameAfterPort(script),
-      hasLoaded: await cacheRequest(script.src),
+      name: getScriptNameAfterPort(script),
+      status: await cacheRequest(script.src),
     };
   });
 
