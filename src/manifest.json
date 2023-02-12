@@ -41,7 +41,7 @@
     },
 
     "browser_action": {
-        "default_title": "Ads Link Skiper",
+        "default_title": "SuiteCommerce Extension Helper Devtool",
         "default_icon": "media/icon.png",
         "default_popup": "popup/popup.html"
     },
