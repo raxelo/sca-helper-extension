@@ -53,6 +53,7 @@ async function parseContext() {
 }
 
 setInterval(async function () {
+  if (!SC) return;
   const context = await parseContext();
   window.postMessage({ type: "FROM_PAGE", context });
 }, 100);
