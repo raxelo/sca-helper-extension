@@ -13,9 +13,7 @@
     },
 
     "permissions": [
-        "webNavigation",
         "webRequestBlocking",
-        "storage",
         "activeTab"
     ],
 
