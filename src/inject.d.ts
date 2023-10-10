@@ -9,7 +9,7 @@ type ScriptStatus = {
 }
 
 type SCState = {
-    touchpoint: string
+    touchpoint: ApplicationTouchpoint
     scriptStatuses: ScriptStatus[]
     baseUrl: string
 }

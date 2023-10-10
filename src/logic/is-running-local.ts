@@ -1,12 +1,25 @@
 import { useInject } from './use-inject'
 
+const sanitizeTouchpoint = (touchpoint?: ApplicationTouchpoint) => {
+  if (!touchpoint)
+    return
+
+  const touchpointMap = {
+    shopping: 'shopping',
+    myaccount: 'my_account',
+    checkout: 'checkout',
+  }
+
+  return touchpointMap[touchpoint] || touchpoint
+}
+
 export function useIsLocal() {
   const windowLocation = ref(window.location.href)
   const isLocal = computed(() => windowLocation.value.includes('-local.ssp'))
   const mode = computed<ApplicationMode>(() => isLocal.value ? 'local' : 'remote')
 
   const inject = useInject()
-  const touchpoint = computed(() => inject.state.value?.touchpoint)
+  const touchpoint = computed(() => sanitizeTouchpoint(inject.state.value?.touchpoint))
   const fullTouchpoint = computed(() => `${touchpoint.value}${isLocal.value ? '-local' : ''}.ssp`)
   const localServerIsOn = computed(() => !!inject.state.value?.scriptStatuses?.find(s => s.status === 'loaded'))
   const baseUrl = computed(() => inject.state.value?.baseUrl)

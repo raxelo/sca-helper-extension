@@ -38,8 +38,10 @@ export async function getManifest() {
       'tabs',
       'storage',
       'activeTab',
+      'webRequest',
+      'scripting',
     ],
-    host_permissions: ['*://*/*'],
+    host_permissions: ['*://*/*', 'http://localhost/*'],
     content_scripts: [
       {
         matches: [
