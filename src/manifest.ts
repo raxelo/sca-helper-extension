@@ -36,9 +36,7 @@ export async function getManifest() {
     },
     permissions: [
       'tabs',
-      'storage',
       'activeTab',
-      'webRequest',
       'scripting',
     ],
     host_permissions: ['*://*/*', 'http://localhost/*'],
