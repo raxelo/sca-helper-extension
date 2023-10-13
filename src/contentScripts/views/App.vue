@@ -29,11 +29,16 @@ const tooltipText = computed(() => {
   return statusToMessageMap[status.value]
 })
 
+function absolutize(path: string) {
+  return path.replace('#', '/')
+}
+
 function switchApplicationMode() {
   const touchpointApp = `${touchpoint.value}${isLocal.value ? '' : '-local'}.ssp`
   const url = (baseUrl.value || '').replace('{{file}}', touchpointApp)
   const path = getPath()
-  const fullUrl = `${url}${path}`
+
+  const fullUrl = url.includes('shopping.ssp') ? absolutize(path) : `${url}${path}`
 
   window.location.href = fullUrl
 }
@@ -80,7 +85,7 @@ const { mostRecentChange } = useMostRecentChange(status)
         </transition>
         <button class="z-100 relative pointer-events-auto rounded-full border border-white/10 bg-black flex-col flex items-center px-3.5 py-4 text-white gap-3">
           <span class="absolute top-0 bg-white rounded font-bold text-[11px] uppercase font-black tracking-wide px-1 transform -translate-y-1/2 leading-snug text-black border-1 border-black/20 border-solid">
-            SCA Toolbar
+            SCA Toolba
           </span>
           <div class="mx-1 flex items-center gap-2">
             <div :class="statusColor" class="group relative flex cursor-pointer" @click="switchApplicationMode">
