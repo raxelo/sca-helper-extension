@@ -30,7 +30,8 @@ const tooltipText = computed(() => {
 })
 
 function absolutize(path: string) {
-  return path.replace('#', '/')
+  const targetPath = path.replace('#', '/')
+  return targetPath || '/'
 }
 
 function switchApplicationMode() {
