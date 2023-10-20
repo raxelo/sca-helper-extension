@@ -3,6 +3,14 @@ import { useIsLocal } from '~/logic/is-running-local'
 import 'uno.css'
 import { useMostRecentChange } from '~/logic/most-recent-change'
 
+const show = ref(false)
+onMounted(() => {
+  document.addEventListener('Toggle:Toolbar', (e) => {
+    const { isEnabled } = (e as CustomEvent).detail
+    show.value = isEnabled
+  })
+})
+
 const { status, touchpoint, fullTouchpoint, baseUrl, isLocal } = useIsLocal()
 
 const statusColor = computed(() => {
@@ -30,8 +38,8 @@ const tooltipText = computed(() => {
 })
 
 function absolutize(path: string) {
-  const targetPath = path.replace('#', '/')
-  return targetPath || '/'
+  const targetPath = path.replace('#', '/') || '/'
+  return window.location.origin + targetPath
 }
 
 function switchApplicationMode() {
@@ -45,17 +53,18 @@ function switchApplicationMode() {
 }
 
 function getPath() {
-  const path = ''
   const search = window.location.search
   const hash = window.location.hash
 
+  // If on domain.com#path, return #path
   if (window.location.hash)
     return search + hash
 
+  // If on domain.com/path, simply return /path
   if (!window.location.pathname.includes('.ssp'))
-    return window.location.pathname.replace('/', '#')
+    return window.location.pathname.replace('/', '#') + search
 
-  return path
+  return ''
 }
 
 const { mostRecentChange } = useMostRecentChange(status)
@@ -71,7 +80,7 @@ const { mostRecentChange } = useMostRecentChange(status)
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="transform opacity-0 translate-y-full"
     >
-      <div v-if="touchpoint" class="relative">
+      <div v-if="touchpoint && show" class="relative">
         <transition
           enter-active-class="duration-1000 delay-1000 ease-out"
           enter-from-class="transform -translate-x-40 opacity-0"
@@ -101,12 +110,3 @@ const { mostRecentChange } = useMostRecentChange(status)
     </transition>
   </section>
 </template>
-
-<style>
-.tippy-box{
-  background-color: #f7f7f7;
-  color: black;
-  border: 1px solid #ededed;
-  border-radius: 0;
-}
-</style>
