@@ -2,12 +2,13 @@
 import { useIsLocal } from '~/logic/is-running-local'
 import 'uno.css'
 import { useMostRecentChange } from '~/logic/most-recent-change'
+import { useStorageLocal } from '~/composables/useStorageLocal'
+const isToolbarEnabled = useStorageLocal('isEnabled', true)
 
-const show = ref(false)
 onMounted(() => {
   document.addEventListener('Toggle:Toolbar', (e) => {
     const { isEnabled } = (e as CustomEvent).detail
-    show.value = isEnabled
+    isToolbarEnabled.value = isEnabled
   })
 })
 
@@ -80,7 +81,7 @@ const { mostRecentChange } = useMostRecentChange(status)
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="transform opacity-0 translate-y-full"
     >
-      <div v-if="touchpoint && show" class="relative">
+      <div v-if="touchpoint && isToolbarEnabled" class="relative">
         <transition
           enter-active-class="duration-1000 delay-1000 ease-out"
           enter-from-class="transform -translate-x-40 opacity-0"
